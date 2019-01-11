@@ -1,4 +1,4 @@
-﻿namespace AsemSimNSS
+﻿namespace AsemSim
 {
     partial class Form1
     {

@@ -9,12 +9,25 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace AsemSimNSS
+namespace AsemSim
 {
     public partial class Form1 : Form
     {
         int address = 0;
         char[] mem = new char[97];
+
+        struct asmLabel
+        {
+            public string name;
+            public string address;
+            public asmLabel(string str, int add)
+            {
+                name = str;
+                address = add.ToString("X2");
+            }
+        }
+
+        List<asmLabel> labelList = new List<asmLabel>();
 
         public Form1()
         {
@@ -101,10 +114,67 @@ namespace AsemSimNSS
         {
             string[] line = sourceTextBox.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             char[] del = { ' ', '\t' };
-            int startLine;
+            int startLine = 0;
             for (int i = 0; i < line.Length; i++)
             {
                 string[] term = line[i].Split(del, StringSplitOptions.RemoveEmptyEntries);
+                if(term[0] == "START")
+                {
+                    startLine = i;
+                    break;
+                }
+            }
+
+            int adr = 0;
+            int endLine = 0;
+            string opc;
+            string opr;
+            //Pass 1
+            for (int i = startLine + 1; i < line.Length; i++)
+            {
+                string[] term = line[i].Split(del, StringSplitOptions.RemoveEmptyEntries);
+                //Check Label
+                if(line[i].IndexOf(term[0]) == 0)
+                {
+                    labelList.Add(new asmLabel(term[0], adr));
+                    opc = term[1];
+                } else
+                {
+                    opc = term[0];
+                }
+
+                if(opc == "KA" || opc == "A0")
+                {
+                    adr++;
+                } else if(opc == "END")
+                {
+                    endLine = i;
+                    break;
+                }
+            }
+
+            //Pass 2
+            for (int i = startLine + 1; i < line.Length; i++)
+            {
+                //i行目のopc , oprをとってくる
+                //ラベルが行頭にあればterm[1]がopc
+                //opcの次がopr
+
+                //opcを機械語に直して，
+                //oprがあればそれも入れる
+                //JUMPの場合は，ラベルのリストを見る
+                if(opc == "JUMP")
+                {
+                    mem[adr] = 'F';
+                    for (int index = 0; index < labelList.Count; index++)
+                    {
+                        if(labelList[index].name == opr)
+                        {
+                            mem[adr + 1] = labelList[index].address[0];
+                            mem[adr + 2] = labelList[index].address[1];
+                        }
+                    }
+                }
             }
         }
     }
