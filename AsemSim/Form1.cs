@@ -20,7 +20,6 @@ namespace AsemSim
         int address = 0;
         char[] mem = new char[97];
 
-
         /// <summary>
         /// メモリ初期化処理
         /// </summary>
