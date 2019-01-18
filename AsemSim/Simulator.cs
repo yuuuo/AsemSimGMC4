@@ -14,6 +14,9 @@ namespace AsemSim
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// レジスタ，データメモリ，キー入力，実行フラグ変数宣言
+        /// </summary>
         int ar = 0xF;
         int br = 0xF;
         int yr = 0xF;
@@ -22,6 +25,9 @@ namespace AsemSim
         int key = -1;
         bool exFlag = true;
 
+        /// <summary>
+        /// 実行ボタンイベント
+        /// </summary>
         private void buttonRun_Click(object sender, EventArgs e)
         {
             timer1.Start();
@@ -29,11 +35,20 @@ namespace AsemSim
             exFlag = true;
         }
 
+        /// <summary>
+        /// リセットボタンイベント
+        /// </summary>
         private void buttonReset_Click(object sender, EventArgs e)
         {
             timer1.Stop();
         }
 
+        /// <summary>
+        /// タイマー割り込み
+        /// シミュレーター実行部
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
             int tmp;
@@ -139,11 +154,21 @@ namespace AsemSim
             key = -1;
         }
 
+        /// <summary>
+        /// ボタンがクリック時のイベント
+        /// </summary>
+        /// <param name="sender">押されたボタン</param>
+        /// <param name="e"></param>
         private void numKey_Click(object sender, EventArgs e)
         {
+            //押されたボタンのテキストを代入
             key = ((Button)sender).Text.ToCharArray()[0].ToInt();
         }
 
+        /// <summary>
+        /// 2進LEDを表示
+        /// </summary>
+        /// <param name="a">表示する数</param>
         private void SetBinaryLED(int a)
         {
             PictureBox[] binaryLED = { binaryLED0, binaryLED1, binaryLED2, binaryLED3, binaryLED4, binaryLED5, binaryLED6 };
@@ -153,10 +178,17 @@ namespace AsemSim
             }
         }
 
+        /// <summary>
+        /// 7segLEDを表示
+        /// </summary>
+        /// <param name="a">表示する数 負の数で表示を消す</param>
         private void SetSevenLED(int a)
         {
             PictureBox[] sevenLED = { sevenLED0, sevenLED1, sevenLED2, sevenLED3, sevenLED4, sevenLED5, sevenLED6 };
+            //負の数の場合全部消す
             if (a < 0) sevenLED.Select(i => i.BackColor = Color.Silver);
+
+            //それぞれのLEDでマッチしたら赤にする
             List<List<String>> match = new List<List<String>>();
             match.Add(new List<String> { "0", "2", "3", "5", "6", "7", "8", "9", "A", "E", "F" });
             match.Add(new List<String> { "0", "1", "2", "3", "4", "7", "8", "9", "A", "D" });

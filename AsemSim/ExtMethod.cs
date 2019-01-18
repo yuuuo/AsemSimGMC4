@@ -8,6 +8,11 @@ namespace AsemSim
 {
     public static class CharExt
     {
+        /// <summary>
+        /// 拡張メソッド
+        /// 16進char型をint型にキャスト
+        /// </summary>
+        /// <returns>-1でエラー</returns>
         public static int ToInt(this char self)
         {
             if ('0' <= self && self <= '9')
@@ -17,6 +22,11 @@ namespace AsemSim
             return -1;
         }
 
+        /// <summary>
+        /// 拡張メソッド
+        /// int型を16進charにキャスト
+        /// </summary>
+        /// <returns>-1でエラー</returns>
         public static int ToChar(this int self)
         {
             if (0 <= self && self <= 9)

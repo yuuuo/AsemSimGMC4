@@ -13,9 +13,17 @@ namespace AsemSim
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// アドレス
+        /// プログラムメモリ宣言
+        /// </summary>
         int address = 0;
         char[] mem = new char[97];
 
+
+        /// <summary>
+        /// メモリ初期化処理
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
@@ -28,6 +36,9 @@ namespace AsemSim
             setMemText();
         }
 
+        /// <summary>
+        /// INCRボタンイベント
+        /// </summary>
         private void button1_Click(object sender, EventArgs e)
         {
             address++;
@@ -35,6 +46,9 @@ namespace AsemSim
             SetSevenLED(address);
         }
 
+        /// <summary>
+        /// プログラムメモリにセットする
+        /// </summary>
         private void setMemText()
         {
             memTextBox.Text = new string(mem);
@@ -45,6 +59,9 @@ namespace AsemSim
 
         }
 
+        /// <summary>
+        /// メニューバーファイルオープンの処理
+        /// </summary>
         private void openFileMenu_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() != DialogResult.OK)
@@ -55,6 +72,9 @@ namespace AsemSim
             sr.Close();
         }
 
+        /// <summary>
+        /// メニューバーファイル保存の処理
+        /// </summary>
         private void saveFileMenu_Click(object sender, EventArgs e)
         {
             if (saveFileDialog.ShowDialog() != DialogResult.OK)
@@ -65,10 +85,17 @@ namespace AsemSim
             sw.Close();
         }
 
+        /// <summary>
+        /// アセンブリスタートボタンイベント
+        /// </summary>
         private void buttonStartAsm_Click(object sender, EventArgs e)
         {
+            //1行分のデータに分割
             string[] line = sourceTextBox.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            //区切り文字
             char[] del = { ' ', '\t' };
+
+            //スタート行探索
             int startLine = 0;
             for (int i = 0; i < line.Length; i++)
             {
@@ -84,11 +111,13 @@ namespace AsemSim
             int endLine = 0;
             string opc = "";
             string opr = "";
+            //ラベル保存用辞書
             Dictionary<string, string> asmLabelDic = new Dictionary<string, string>();
 
             //Pass 1
             for (int i = startLine + 1; i < line.Length; i++)
             {
+                //1ワードごとにキューに入れる
                 Queue<string> term = new Queue<string>(line[i].Split(del, StringSplitOptions.RemoveEmptyEntries));
                 string label = "";
                 //Check Label
@@ -113,6 +142,8 @@ namespace AsemSim
                     adr += OperationArray.op[opc].length;
                 }
             }
+
+            //++adrしてから読むため-1
             adr = -1;
             //Pass 2
             for (int i = startLine + 1; i < line.Length; i++)
@@ -129,7 +160,10 @@ namespace AsemSim
                     break;
                 }
 
+                //命令を命令コードに変換
                 mem[++adr] = OperationArray.op[opc].code;
+
+                //更に引数がある場合
                 if (opc == "JUMP")
                 {
                     opr = term.Dequeue();
@@ -152,7 +186,9 @@ namespace AsemSim
                     mem[++adr] = opr[0];
                 }
             }
-            memTextBox.Text = new string(mem);
+
+            //結果を出力
+            setMemText();
         }
     }
 }
