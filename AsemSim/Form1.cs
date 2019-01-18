@@ -16,8 +16,6 @@ namespace AsemSim
         int address = 0;
         char[] mem = new char[97];
 
-        Dictionary<string, string> asmLabelDic = new Dictionary<string, string>();
-
         public Form1()
         {
             InitializeComponent();
@@ -86,6 +84,8 @@ namespace AsemSim
             int endLine = 0;
             string opc = "";
             string opr = "";
+            Dictionary<string, string> asmLabelDic = new Dictionary<string, string>();
+
             //Pass 1
             for (int i = startLine + 1; i < line.Length; i++)
             {

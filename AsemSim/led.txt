@@ -1,0 +1,5 @@
+	START
+LOOP	KA
+	JUMP LOOP
+	AO
+	END
