@@ -57,7 +57,6 @@ namespace AsemSim
                 timer1.Stop();
                 return;
             }
-            Console.WriteLine(mem[address]);
             switch (mem[address])
             {
                 case '0':
