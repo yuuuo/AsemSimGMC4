@@ -16,18 +16,7 @@ namespace AsemSim
         int address = 0;
         char[] mem = new char[97];
 
-        struct asmLabel
-        {
-            public string name;
-            public string address;
-            public asmLabel(string str, int add)
-            {
-                name = str;
-                address = add.ToString("X2");
-            }
-        }
-
-        List<asmLabel> labelList = new List<asmLabel>();
+        Dictionary<string, string> asmLabelDic = new Dictionary<string, string>();
 
         public Form1()
         {
@@ -51,38 +40,6 @@ namespace AsemSim
         private void setMemText()
         {
             memTextBox.Text = new string(mem);
-        }
-
-        private void SetBinaryLED(int a)
-        {
-            PictureBox[] binaryLED = { binaryLED0, binaryLED1, binaryLED2, binaryLED3, binaryLED4, binaryLED5, binaryLED6 };
-            for (int i = 0; i < binaryLED.Length; i++)
-            {
-                binaryLED[i].BackColor = ((a >> i) & 1) == 1 ? Color.Red : Color.Black;
-            }
-        }
-
-        private void SetSevenLED(int a)
-        {
-            List<List<String>> match = new List<List<String>>();
-            match.Add(new List<String> { "0", "2", "3", "5", "6", "7", "8", "9", "A", "E", "F" });
-            match.Add(new List<String> { "0", "1", "2", "3", "4", "7", "8", "9", "A", "D" });
-            match.Add(new List<String> { "0", "1", "3", "4", "5", "6", "7", "8", "9", "A", "B", "D" });
-            match.Add(new List<String> { "0", "2", "3", "5", "6", "8", "9", "B", "C", "D", "E" });
-            match.Add(new List<String> { "0", "2", "6", "8", "A", "B", "C", "D", "E", "F" });
-            match.Add(new List<String> { "0", "4", "5", "6", "8", "9", "A", "B", "E", "F" });
-            match.Add(new List<String> { "2", "3", "4", "5", "6", "8", "9", "A", "B", "C", "D", "E", "F" });
-            PictureBox[] sevenLED = { sevenLED0, sevenLED1, sevenLED2, sevenLED3, sevenLED4, sevenLED5, sevenLED6 };
-            for (int i = 0; i < sevenLED.Length; i++)
-            {
-                sevenLED[i].BackColor = match[i].FindAll(s => s == a.ToString("X")).Count != 0 ? Color.Red : Color.Black;
-            }
-        }
-
-        private void buttonReset_Click(object sender, EventArgs e)
-        {
-            address = 0;
-            SetBinaryLED(address);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -118,7 +75,7 @@ namespace AsemSim
             for (int i = 0; i < line.Length; i++)
             {
                 string[] term = line[i].Split(del, StringSplitOptions.RemoveEmptyEntries);
-                if(term[0] == "START")
+                if (term[0] == "START")
                 {
                     startLine = i;
                     break;
@@ -127,55 +84,75 @@ namespace AsemSim
 
             int adr = 0;
             int endLine = 0;
-            string opc;
-            string opr;
+            string opc = "";
+            string opr = "";
             //Pass 1
             for (int i = startLine + 1; i < line.Length; i++)
             {
-                string[] term = line[i].Split(del, StringSplitOptions.RemoveEmptyEntries);
+                Queue<string> term = new Queue<string>(line[i].Split(del, StringSplitOptions.RemoveEmptyEntries));
+                string label = "";
                 //Check Label
-                if(line[i].IndexOf(term[0]) == 0)
+                if (line[i].IndexOf(opc = term.Dequeue()) == 0)
                 {
-                    labelList.Add(new asmLabel(term[0], adr));
-                    opc = term[1];
-                } else
-                {
-                    opc = term[0];
+                    asmLabelDic.Add(opc, adr.ToString("X2"));
+                    label = opc + " ";
+                    opc = term.Dequeue();
                 }
 
-                if(opc == "KA" || opc == "A0")
-                {
-                    adr++;
-                } else if(opc == "END")
+                if (opc == "END")
                 {
                     endLine = i;
                     break;
                 }
-            }
+                else if (opc == "RET")
+                {
 
+                }
+                else
+                {
+                    adr += OperationArray.op[opc].length;
+                }
+            }
+            adr = -1;
             //Pass 2
             for (int i = startLine + 1; i < line.Length; i++)
             {
-                //i行目のopc , oprをとってくる
-                //ラベルが行頭にあればterm[1]がopc
-                //opcの次がopr
-
-                //opcを機械語に直して，
-                //oprがあればそれも入れる
-                //JUMPの場合は，ラベルのリストを見る
-                if(opc == "JUMP")
+                Queue<string> term = new Queue<string>(line[i].Split(del, StringSplitOptions.RemoveEmptyEntries));
+                //Check Label
+                if (line[i].IndexOf(opc = term.Dequeue()) == 0)
                 {
-                    mem[adr] = 'F';
-                    for (int index = 0; index < labelList.Count; index++)
-                    {
-                        if(labelList[index].name == opr)
-                        {
-                            mem[adr + 1] = labelList[index].address[0];
-                            mem[adr + 2] = labelList[index].address[1];
-                        }
-                    }
+                    opc = term.Dequeue();
+                }
+
+                if (opc == "END")
+                {
+                    break;
+                }
+
+                mem[++adr] = OperationArray.op[opc].code;
+                if (opc == "JUMP")
+                {
+                    opr = term.Dequeue();
+                    mem[++adr] = asmLabelDic[opr][0];
+                    mem[++adr] = asmLabelDic[opr][1];
+                }
+                else if (opc == "RET")
+                {
+                    mem[++adr] = 'F';
+                    mem[++adr] = 'F';
+                }
+                else if (opc == "CAL")
+                {
+                    opr = term.Dequeue();
+                    mem[++adr] = OperationArray.op[opr].code;
+                }
+                else if (OperationArray.op[opc].length >= 2)
+                {
+                    opr = term.Dequeue();
+                    mem[++adr] = opr[0];
                 }
             }
+            memTextBox.Text = new string(mem);
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonINCR = new System.Windows.Forms.Button();
             this.binaryLED0 = new System.Windows.Forms.PictureBox();
             this.binaryLED1 = new System.Windows.Forms.PictureBox();
@@ -71,6 +72,7 @@
             this.sevenLED3 = new System.Windows.Forms.PictureBox();
             this.buttonStartAsm = new System.Windows.Forms.Button();
             this.memTextBox = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.binaryLED0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.binaryLED1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.binaryLED6)).BeginInit();
@@ -182,6 +184,7 @@
             this.buttonRun.TabIndex = 25;
             this.buttonRun.Text = "RUN";
             this.buttonRun.UseVisualStyleBackColor = true;
+            this.buttonRun.Click += new System.EventHandler(this.buttonRun_Click);
             // 
             // buttonASet
             // 
@@ -486,6 +489,10 @@
             this.memTextBox.Size = new System.Drawing.Size(708, 19);
             this.memTextBox.TabIndex = 55;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -598,6 +605,7 @@
         private System.Windows.Forms.PictureBox sevenLED3;
         private System.Windows.Forms.Button buttonStartAsm;
         private System.Windows.Forms.TextBox memTextBox;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

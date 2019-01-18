@@ -1,0 +1,6 @@
+﻿	START	;start asm
+LOOP	KA	;inputkey
+	JUMP LOOP1
+	CAL SHTS
+LOOP1	RET
+	END
