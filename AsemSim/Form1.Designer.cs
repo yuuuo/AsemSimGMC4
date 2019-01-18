@@ -257,6 +257,7 @@
             this.button0.TabIndex = 31;
             this.button0.Text = "0";
             this.button0.UseVisualStyleBackColor = true;
+            this.button0.Click += new System.EventHandler(this.numKey_Click);
             // 
             // button1
             // 
@@ -267,6 +268,7 @@
             this.button1.TabIndex = 32;
             this.button1.Text = "1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.numKey_Click);
             // 
             // button2
             // 
@@ -277,6 +279,7 @@
             this.button2.TabIndex = 33;
             this.button2.Text = "2";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.numKey_Click);
             // 
             // button3
             // 
@@ -287,6 +290,7 @@
             this.button3.TabIndex = 34;
             this.button3.Text = "3";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.numKey_Click);
             // 
             // button4
             // 
@@ -297,6 +301,7 @@
             this.button4.TabIndex = 38;
             this.button4.Text = "4";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.numKey_Click);
             // 
             // button5
             // 
@@ -307,6 +312,7 @@
             this.button5.TabIndex = 37;
             this.button5.Text = "5";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.numKey_Click);
             // 
             // button6
             // 
@@ -317,6 +323,7 @@
             this.button6.TabIndex = 36;
             this.button6.Text = "6";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.numKey_Click);
             // 
             // button7
             // 
@@ -327,6 +334,7 @@
             this.button7.TabIndex = 35;
             this.button7.Text = "7";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.numKey_Click);
             // 
             // button8
             // 
@@ -337,6 +345,7 @@
             this.button8.TabIndex = 42;
             this.button8.Text = "8";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.numKey_Click);
             // 
             // button9
             // 
@@ -347,6 +356,7 @@
             this.button9.TabIndex = 41;
             this.button9.Text = "9";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.numKey_Click);
             // 
             // buttonA
             // 
@@ -357,6 +367,7 @@
             this.buttonA.TabIndex = 40;
             this.buttonA.Text = "A";
             this.buttonA.UseVisualStyleBackColor = true;
+            this.buttonA.Click += new System.EventHandler(this.numKey_Click);
             // 
             // buttonB
             // 
@@ -367,6 +378,7 @@
             this.buttonB.TabIndex = 39;
             this.buttonB.Text = "B";
             this.buttonB.UseVisualStyleBackColor = true;
+            this.buttonB.Click += new System.EventHandler(this.numKey_Click);
             // 
             // buttonC
             // 
@@ -377,6 +389,7 @@
             this.buttonC.TabIndex = 46;
             this.buttonC.Text = "C";
             this.buttonC.UseVisualStyleBackColor = true;
+            this.buttonC.Click += new System.EventHandler(this.numKey_Click);
             // 
             // buttonD
             // 
@@ -387,6 +400,7 @@
             this.buttonD.TabIndex = 45;
             this.buttonD.Text = "D";
             this.buttonD.UseVisualStyleBackColor = true;
+            this.buttonD.Click += new System.EventHandler(this.numKey_Click);
             // 
             // buttonE
             // 
@@ -397,6 +411,7 @@
             this.buttonE.TabIndex = 44;
             this.buttonE.Text = "E";
             this.buttonE.UseVisualStyleBackColor = true;
+            this.buttonE.Click += new System.EventHandler(this.numKey_Click);
             // 
             // buttonF
             // 
@@ -407,10 +422,11 @@
             this.buttonF.TabIndex = 43;
             this.buttonF.Text = "F";
             this.buttonF.UseVisualStyleBackColor = true;
+            this.buttonF.Click += new System.EventHandler(this.numKey_Click);
             // 
             // sevenLED5
             // 
-            this.sevenLED5.BackColor = System.Drawing.Color.Black;
+            this.sevenLED5.BackColor = System.Drawing.Color.Silver;
             this.sevenLED5.Location = new System.Drawing.Point(307, 95);
             this.sevenLED5.Name = "sevenLED5";
             this.sevenLED5.Size = new System.Drawing.Size(5, 30);
@@ -419,7 +435,7 @@
             // 
             // sevenLED4
             // 
-            this.sevenLED4.BackColor = System.Drawing.Color.Black;
+            this.sevenLED4.BackColor = System.Drawing.Color.Silver;
             this.sevenLED4.Location = new System.Drawing.Point(307, 131);
             this.sevenLED4.Name = "sevenLED4";
             this.sevenLED4.Size = new System.Drawing.Size(5, 30);
@@ -428,7 +444,7 @@
             // 
             // sevenLED2
             // 
-            this.sevenLED2.BackColor = System.Drawing.Color.Black;
+            this.sevenLED2.BackColor = System.Drawing.Color.Silver;
             this.sevenLED2.Location = new System.Drawing.Point(343, 131);
             this.sevenLED2.Name = "sevenLED2";
             this.sevenLED2.Size = new System.Drawing.Size(5, 30);
@@ -437,7 +453,7 @@
             // 
             // sevenLED1
             // 
-            this.sevenLED1.BackColor = System.Drawing.Color.Black;
+            this.sevenLED1.BackColor = System.Drawing.Color.Silver;
             this.sevenLED1.Location = new System.Drawing.Point(343, 95);
             this.sevenLED1.Name = "sevenLED1";
             this.sevenLED1.Size = new System.Drawing.Size(5, 30);
@@ -446,7 +462,7 @@
             // 
             // sevenLED0
             // 
-            this.sevenLED0.BackColor = System.Drawing.Color.Black;
+            this.sevenLED0.BackColor = System.Drawing.Color.Silver;
             this.sevenLED0.Location = new System.Drawing.Point(315, 90);
             this.sevenLED0.Name = "sevenLED0";
             this.sevenLED0.Size = new System.Drawing.Size(25, 5);
@@ -455,7 +471,7 @@
             // 
             // sevenLED6
             // 
-            this.sevenLED6.BackColor = System.Drawing.Color.Black;
+            this.sevenLED6.BackColor = System.Drawing.Color.Silver;
             this.sevenLED6.Location = new System.Drawing.Point(315, 126);
             this.sevenLED6.Name = "sevenLED6";
             this.sevenLED6.Size = new System.Drawing.Size(25, 5);
@@ -464,7 +480,7 @@
             // 
             // sevenLED3
             // 
-            this.sevenLED3.BackColor = System.Drawing.Color.Black;
+            this.sevenLED3.BackColor = System.Drawing.Color.Silver;
             this.sevenLED3.Location = new System.Drawing.Point(315, 160);
             this.sevenLED3.Name = "sevenLED3";
             this.sevenLED3.Size = new System.Drawing.Size(25, 5);

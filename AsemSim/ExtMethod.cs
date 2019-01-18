@@ -10,7 +10,7 @@ namespace AsemSim
     {
         public static int ToInt(this char self)
         {
-            if ('0' <= self && self <= 'F')
+            if ('0' <= self && self <= '9')
                 return self - '0';
             else if ('A' <= self && self <= 'F')
                 return self - 'A' + 10;
