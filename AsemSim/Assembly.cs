@@ -61,6 +61,10 @@ namespace AsemSim
                 {
 
                 }
+                else if(opc == "DC")
+                {
+                    
+                }
                 else
                 {
                     adr += OperationArray.op[opc].length;
@@ -69,6 +73,9 @@ namespace AsemSim
 
             //++adrしてから読むため-1
             adr = -1;
+
+            // DC用カウンタ
+            int DCCounter = 0;
             //Pass 2
             for (int i = startLine + 1; i < line.Length; i++)
             {
@@ -82,6 +89,12 @@ namespace AsemSim
                 if (opc == "END")
                 {
                     break;
+                }
+                else if (opc == "DC")
+                {
+                    opr = term.Dequeue();
+                    mem[80 + DCCounter++] = opr[0];
+                    continue;
                 }
 
                 //命令を命令コードに変換
