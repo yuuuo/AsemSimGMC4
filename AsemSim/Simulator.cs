@@ -25,9 +25,12 @@ namespace AsemSim
         int br_ = 0xF;
         int yr_ = 0xF;
         int zr_ = 0xF;
+        // 0xFで初期化
         int[] dm = (new int[16]).Select(v => 15).ToArray();
         int key = -1;
         bool exFlag = true;
+        // TIMRで待つ回数 -1 : 未使用
+        int waitTimer = -1;
 
 
         /// <summary>
