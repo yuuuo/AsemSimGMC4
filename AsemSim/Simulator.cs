@@ -56,6 +56,17 @@ namespace AsemSim
         }
 
         /// <summary>
+        /// 2進LEDの一箇所を表示
+        /// </summary>
+        /// <param name="o">出力</param>
+        /// <param name="bit">2進LEDのビット番号</param>
+        private void SetBinaryLED(bool o, int bit)
+        {
+            PictureBox[] binaryLED = { binaryLED0, binaryLED1, binaryLED2, binaryLED3, binaryLED4, binaryLED5, binaryLED6 };
+            binaryLED[bit].BackColor = o ? Color.Red : Color.Black;
+        }
+
+        /// <summary>
         /// 7segLEDを表示
         /// </summary>
         /// <param name="a">表示する数 負の数で表示を消す</param>
