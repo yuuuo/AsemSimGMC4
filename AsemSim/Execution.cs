@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace AsemSim
 {
@@ -86,21 +87,21 @@ namespace AsemSim
                     address++;
                     break;
                 case '4':
-                    dm[50 + yr] = ar;
+                    dm[yr] = ar;
                     address++;
                     break;
                 case '5':
-                    ar = dm[50 + yr];
+                    ar = dm[yr];
                     address++;
                     break;
                 case '6':
-                    ar = (ar + dm[50 + yr]) % 15;
-                    exFlag = (ar + dm[50 + yr]) / 15 > 0;
+                    ar = (ar + dm[yr]) % 15;
+                    exFlag = (ar + dm[yr]) / 15 > 0;
                     address++;
                     break;
                 case '7':
                     //tmp : 引き算の結果 負なら : 実行フラグtrue & 0~15に変換
-                    ar = (exFlag = (tmp = dm[50 + yr] - ar) < 0) ? 16 + tmp : tmp;
+                    ar = (exFlag = (tmp = dm[yr] - ar) < 0) ? 16 + tmp : tmp;
                     address++;
                     break;
                 case '8':
@@ -155,39 +156,88 @@ namespace AsemSim
         /// </summary>
         private void ECodeExecution()
         {
+            int[] SoundFreq = new int[] { 0, 220, 262, 297, 339, 349, 392, 440, 494, 523, 587, 659, 698, 784, 0 };
             switch (mem[address])
             {
                 case '0':
                     SetSevenLED(-1);
+                    address++;
                     break;
                 case '1':
                     SetBinaryLED(true, yr);
+                    address++;
                     break;
                 case '2':
                     SetBinaryLED(false, yr);
-                    break;
-                case '3':
-                    ar ^= 0xF;
+                    address++;
                     break;
                 case '4':
+                    ar ^= 0xF;
+                    address++;
                     break;
                 case '5':
+                    //tmp : swap
+                    int tmp;
+                    tmp = ar;
+                    ar = ar_;
+                    ar_ = tmp;
+
+                    tmp = br;
+                    br = br_;
+                    br_ = tmp;
+
+                    tmp = yr;
+                    yr = yr_;
+                    yr_ = tmp;
+
+                    tmp = zr;
+                    zr = zr_;
+                    zr_ = tmp;
+                    address++;
                     break;
                 case '6':
+                    exFlag = ar % 2 == 0;
+                    ar >>= 1;
+                    address++;
                     break;
                 case '7':
+                    SoundPlayer end = new SoundPlayer(@"sound\end.wav");
+                    end.Play();
                     break;
                 case '8':
+                    SoundPlayer error = new SoundPlayer(@"sound\error.wav");
+                    error.Play();
                     break;
                 case '9':
+                    SoundPlayer shorts = new SoundPlayer(@"sound\short.wav");
+                    shorts.Play();
                     break;
                 case 'A':
+                    SoundPlayer longs = new SoundPlayer(@"sound\long.wav");
+                    longs.Play();
                     break;
                 case 'B':
+                    Console.Beep(SoundFreq[ar], 1000);
                     break;
                 case 'C':
+                    // Intervalによって影響を受ける 1.0 / (timer1.Interval / 100.0)
+                    if(waitTimer == -1)
+                    {
+                        waitTimer = ar + 1;
+                    } else
+                    {
+                        waitTimer--;
+                        if(waitTimer == 0)
+                        {
+                            waitTimer = -1;
+                            address++;
+                        }
+                    }
+                    
                     break;
                 case 'D':
+                    SetBinaryLED(dm[0x7] << 4 | dm[0xF]);
+                    address++;
                     break;
                 case 'E':
                     break;
@@ -196,7 +246,6 @@ namespace AsemSim
                 default:
                     break;
             }
-            address++;
         }
     }
 }

@@ -94,6 +94,10 @@
   <ItemGroup>
     <Content Include="memo.txt" />
     <Content Include="program.txt" />
+    <Content Include="sound\end.wav" />
+    <Content Include="sound\error.wav" />
+    <Content Include="sound\long.wav" />
+    <Content Include="sound\short.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
