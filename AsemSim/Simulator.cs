@@ -15,12 +15,16 @@ namespace AsemSim
     public partial class Form1 : Form
     {
         /// <summary>
-        /// レジスタ，データメモリ，キー入力，実行フラグ変数宣言
+        /// レジスタ，データメモリ，キー入力，実行フラグ変数宣言，補助レジスタ(_)
         /// </summary>
         int ar = 0xF;
         int br = 0xF;
         int yr = 0xF;
         int zr = 0xF;
+        int ar_ = 0xF;
+        int br_ = 0xF;
+        int yr_ = 0xF;
+        int zr_ = 0xF;
         int[] dm = (new int[16]).Select(v => 15).ToArray();
         int key = -1;
         bool exFlag = true;
