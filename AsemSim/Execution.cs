@@ -43,6 +43,7 @@ namespace AsemSim
                 return;
             }
             CodeExecution();
+            setStatus();
         }
 
         /// <summary>

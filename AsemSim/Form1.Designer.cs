@@ -73,6 +73,7 @@
             this.buttonStartAsm = new System.Windows.Forms.Button();
             this.memTextBox = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.statusLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.binaryLED0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.binaryLED1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.binaryLED6)).BeginInit();
@@ -524,11 +525,20 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // statusLabel
+            // 
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(23, 429);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(0, 12);
+            this.statusLabel.TabIndex = 57;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.memTextBox);
             this.Controls.Add(this.buttonStartAsm);
             this.Controls.Add(this.sevenLED3);
@@ -637,6 +647,7 @@
         private System.Windows.Forms.Button buttonStartAsm;
         private System.Windows.Forms.TextBox memTextBox;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label statusLabel;
     }
 }
 

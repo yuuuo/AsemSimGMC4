@@ -33,6 +33,7 @@ namespace AsemSim
             }
             mem[mem.Length - 1] = '\0';
             setMemText();
+            setStatus();
         }
 
         /// <summary>
@@ -82,6 +83,13 @@ namespace AsemSim
             StreamWriter sw = new StreamWriter(saveFileDialog.FileName, false, System.Text.Encoding.GetEncoding("shift-jis"));
             sw.Write(sourceTextBox.Text);
             sw.Close();
+        }
+
+        private void setStatus()
+        {
+            statusLabel.Text = "A : " + ar.ToString("X") + " , B : " + br.ToString("X") + " , Y : " + yr.ToString("X") + " , Z : " + zr.ToString("X") +
+                              " A' : " + ar_.ToString("X") + " , B' : " + br_.ToString("X") + " , Y' : " + yr_.ToString("X") + " , Z' : " + zr_.ToString("X") +
+                              "  実行フラグ : " + exFlag.ToString();
         }
     }
 }
