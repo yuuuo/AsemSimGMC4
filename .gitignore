@@ -259,3 +259,9 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/AsemSim/6_DCとメモリ処理.txt
+/AsemSim/5_タイマーの使用.txt
+/AsemSim/4_ラベルの使用②.txt
+/AsemSim/3_ラベルの使用①.txt
+/AsemSim/2_データメモリの利用.txt
+/AsemSim/1_足し算_コメント.txt
