@@ -14,6 +14,12 @@ namespace AsemSim
         /// </summary>
         private void buttonStartAsm_Click(object sender, EventArgs e)
         {
+            //メモリを初期化
+            for (int i = 0; i < mem.Length - 1; i++)
+            {
+                mem[i] = 'F';
+            }
+
             //1行分のデータに分割
             string[] line = sourceTextBox.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             //区切り文字
