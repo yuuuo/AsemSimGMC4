@@ -61,9 +61,13 @@ namespace AsemSim
                 {
 
                 }
-                else if(opc == "DC")
+                else if (opc == "DC")
                 {
-                    
+
+                }
+                else if (opc[0] == ';')
+                {
+
                 }
                 else
                 {
@@ -94,6 +98,10 @@ namespace AsemSim
                 {
                     opr = term.Dequeue();
                     mem[80 + DCCounter++] = opr[0];
+                    continue;
+                }
+                else if (opc[0] == ';')
+                {
                     continue;
                 }
 
