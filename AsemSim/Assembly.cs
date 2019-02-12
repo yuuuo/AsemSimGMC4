@@ -21,7 +21,7 @@ namespace AsemSim
             }
 
             //1行分のデータに分割
-            string[] line = sourceTextBox.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            string[] line = sourceTextBox.Text.ToUpper().Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             //区切り文字
             char[] del = { ' ', '\t' };
 
@@ -48,7 +48,7 @@ namespace AsemSim
             for (int i = startLine + 1; i < line.Length; i++)
             {
                 //1ワードごとにキューに入れる
-                Queue<string> term = new Queue<string>(line[i].Split(del, StringSplitOptions.RemoveEmptyEntries));
+                Queue<string> term = new Queue<string>(line[i].ToUpper().Split(del, StringSplitOptions.RemoveEmptyEntries));
                 string label = "";
                 //Check Label
                 if (line[i].IndexOf(opc = term.Dequeue()) == 0)
