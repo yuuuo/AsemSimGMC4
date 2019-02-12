@@ -65,10 +65,12 @@ namespace AsemSim
                         exFlag = true;
                     }
                     address++;
+                    exFlag = true;
                     break;
                 case '1':
                     SetSevenLED(ar);
                     address++;
+                    exFlag = true;
                     break;
                 case '2':
                     //tmp : swap
@@ -79,6 +81,7 @@ namespace AsemSim
                     zr = yr;
                     zr = tmp;
                     address++;
+                    exFlag = true;
                     break;
                 case '3':
                     //tmp : swap
@@ -86,18 +89,21 @@ namespace AsemSim
                     ar = yr;
                     yr = tmp;
                     address++;
+                    exFlag = true;
                     break;
                 case '4':
                     dm[yr] = ar;
                     address++;
+                    exFlag = true;
                     break;
                 case '5':
                     ar = dm[yr];
                     address++;
+                    exFlag = true;
                     break;
                 case '6':
-                    ar = (ar + dm[yr]) % 15;
-                    exFlag = (ar + dm[yr]) / 15 > 0;
+                    ar = (ar + dm[yr]) % 16;
+                    exFlag = (ar + dm[yr]) / 16 > 0;
                     address++;
                     break;
                 case '7':
@@ -108,19 +114,21 @@ namespace AsemSim
                 case '8':
                     ar = mem[address + 1].ToInt();
                     address += 2;
+                    exFlag = true;
                     break;
                 case '9':
-                    ar = (ar + mem[address + 1].ToInt()) % 15;
-                    exFlag = (ar + mem[address + 1].ToInt()) / 15 > 0;
+                    ar = (ar + mem[address + 1].ToInt()) % 16;
+                    exFlag = (ar + mem[address + 1].ToInt()) / 16 > 0;
                     address += 2;
                     break;
                 case 'A':
                     yr = mem[address + 1].ToInt();
                     address += 2;
+                    exFlag = true;
                     break;
                 case 'B':
-                    yr = (ar + mem[address + 1].ToInt()) % 15;
-                    exFlag = (ar + mem[address + 1].ToInt()) / 15 > 0;
+                    yr = (ar + mem[address + 1].ToInt()) % 16;
+                    exFlag = (ar + mem[address + 1].ToInt()) / 16 > 0;
                     address += 2;
                     break;
                 case 'C':
@@ -163,18 +171,22 @@ namespace AsemSim
                 case '0':
                     SetSevenLED(-1);
                     address++;
+                    exFlag = true;
                     break;
                 case '1':
                     SetBinaryLED(true, yr);
                     address++;
+                    exFlag = true;
                     break;
                 case '2':
                     SetBinaryLED(false, yr);
                     address++;
+                    exFlag = true;
                     break;
                 case '4':
                     ar ^= 0xF;
                     address++;
+                    exFlag = true;
                     break;
                 case '5':
                     //tmp : swap
@@ -195,6 +207,7 @@ namespace AsemSim
                     zr = zr_;
                     zr_ = tmp;
                     address++;
+                    exFlag = true;
                     break;
                 case '6':
                     exFlag = ar % 2 == 0;
@@ -204,27 +217,33 @@ namespace AsemSim
                 case '7':
                     SoundPlayer end = new SoundPlayer(@"sound\end.wav");
                     end.Play();
+                    exFlag = true;
                     break;
                 case '8':
                     SoundPlayer error = new SoundPlayer(@"sound\error.wav");
                     error.Play();
+                    exFlag = true;
                     break;
                 case '9':
                     SoundPlayer shorts = new SoundPlayer(@"sound\short.wav");
                     shorts.Play();
+                    exFlag = true;
                     break;
                 case 'A':
                     SoundPlayer longs = new SoundPlayer(@"sound\long.wav");
                     longs.Play();
+                    exFlag = true;
                     break;
                 case 'B':
                     Console.Beep(SoundFreq[ar], 1000);
+                    exFlag = true;
                     break;
                 case 'C':
                     // Intervalによって影響を受ける 1.0 / (timer1.Interval / 100.0)
                     if(waitTimer == -1)
                     {
                         waitTimer = ar + 1;
+                        Console.WriteLine(waitTimer);
                     } else
                     {
                         waitTimer--;
@@ -233,16 +252,21 @@ namespace AsemSim
                             waitTimer = -1;
                             address++;
                         }
+                        Console.WriteLine(waitTimer);
+                        Console.WriteLine(address);
                     }
-                    
+                    exFlag = true;
                     break;
                 case 'D':
                     SetBinaryLED(dm[0x7] << 4 | dm[0xF]);
                     address++;
+                    exFlag = true;
                     break;
                 case 'E':
+                    exFlag = true;
                     break;
                 case 'F':
+                    exFlag = true;
                     break;
                 default:
                     break;
