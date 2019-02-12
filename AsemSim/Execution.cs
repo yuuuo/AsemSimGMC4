@@ -240,17 +240,19 @@ namespace AsemSim
                     break;
                 case 'C':
                     // Intervalによって影響を受ける 1.0 / (timer1.Interval / 100.0)
-                    if(waitTimer == -1)
+                    address--;
+                    if (waitTimer == -1)
                     {
                         waitTimer = ar + 1;
                         Console.WriteLine(waitTimer);
-                    } else
+                    }
+                    else
                     {
                         waitTimer--;
-                        if(waitTimer == 0)
+                        if (waitTimer == 0)
                         {
                             waitTimer = -1;
-                            address++;
+                            address += 2;
                         }
                         Console.WriteLine(waitTimer);
                         Console.WriteLine(address);
