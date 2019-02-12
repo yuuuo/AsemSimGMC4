@@ -65,7 +65,6 @@ namespace AsemSim
                         exFlag = true;
                     }
                     address++;
-                    exFlag = true;
                     break;
                 case '1':
                     SetSevenLED(ar);
