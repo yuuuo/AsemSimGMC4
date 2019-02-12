@@ -200,10 +200,10 @@
             // 
             this.sourceTextBox.AcceptsReturn = true;
             this.sourceTextBox.AcceptsTab = true;
-            this.sourceTextBox.Location = new System.Drawing.Point(23, 129);
+            this.sourceTextBox.Location = new System.Drawing.Point(23, 82);
             this.sourceTextBox.Multiline = true;
             this.sourceTextBox.Name = "sourceTextBox";
-            this.sourceTextBox.Size = new System.Drawing.Size(230, 268);
+            this.sourceTextBox.Size = new System.Drawing.Size(272, 315);
             this.sourceTextBox.TabIndex = 29;
             // 
             // menuStrip
@@ -443,7 +443,7 @@
             // sevenLED5
             // 
             this.sevenLED5.BackColor = System.Drawing.Color.Silver;
-            this.sevenLED5.Location = new System.Drawing.Point(307, 95);
+            this.sevenLED5.Location = new System.Drawing.Point(329, 95);
             this.sevenLED5.Name = "sevenLED5";
             this.sevenLED5.Size = new System.Drawing.Size(5, 30);
             this.sevenLED5.TabIndex = 47;
@@ -452,7 +452,7 @@
             // sevenLED4
             // 
             this.sevenLED4.BackColor = System.Drawing.Color.Silver;
-            this.sevenLED4.Location = new System.Drawing.Point(307, 131);
+            this.sevenLED4.Location = new System.Drawing.Point(329, 131);
             this.sevenLED4.Name = "sevenLED4";
             this.sevenLED4.Size = new System.Drawing.Size(5, 30);
             this.sevenLED4.TabIndex = 48;
@@ -461,7 +461,7 @@
             // sevenLED2
             // 
             this.sevenLED2.BackColor = System.Drawing.Color.Silver;
-            this.sevenLED2.Location = new System.Drawing.Point(343, 131);
+            this.sevenLED2.Location = new System.Drawing.Point(365, 131);
             this.sevenLED2.Name = "sevenLED2";
             this.sevenLED2.Size = new System.Drawing.Size(5, 30);
             this.sevenLED2.TabIndex = 50;
@@ -470,7 +470,7 @@
             // sevenLED1
             // 
             this.sevenLED1.BackColor = System.Drawing.Color.Silver;
-            this.sevenLED1.Location = new System.Drawing.Point(343, 95);
+            this.sevenLED1.Location = new System.Drawing.Point(365, 95);
             this.sevenLED1.Name = "sevenLED1";
             this.sevenLED1.Size = new System.Drawing.Size(5, 30);
             this.sevenLED1.TabIndex = 49;
@@ -479,7 +479,7 @@
             // sevenLED0
             // 
             this.sevenLED0.BackColor = System.Drawing.Color.Silver;
-            this.sevenLED0.Location = new System.Drawing.Point(315, 90);
+            this.sevenLED0.Location = new System.Drawing.Point(337, 90);
             this.sevenLED0.Name = "sevenLED0";
             this.sevenLED0.Size = new System.Drawing.Size(25, 5);
             this.sevenLED0.TabIndex = 51;
@@ -488,7 +488,7 @@
             // sevenLED6
             // 
             this.sevenLED6.BackColor = System.Drawing.Color.Silver;
-            this.sevenLED6.Location = new System.Drawing.Point(315, 126);
+            this.sevenLED6.Location = new System.Drawing.Point(337, 126);
             this.sevenLED6.Name = "sevenLED6";
             this.sevenLED6.Size = new System.Drawing.Size(25, 5);
             this.sevenLED6.TabIndex = 52;
@@ -497,7 +497,7 @@
             // sevenLED3
             // 
             this.sevenLED3.BackColor = System.Drawing.Color.Silver;
-            this.sevenLED3.Location = new System.Drawing.Point(315, 160);
+            this.sevenLED3.Location = new System.Drawing.Point(337, 160);
             this.sevenLED3.Name = "sevenLED3";
             this.sevenLED3.Size = new System.Drawing.Size(25, 5);
             this.sevenLED3.TabIndex = 53;
@@ -506,7 +506,7 @@
             // buttonStartAsm
             // 
             this.buttonStartAsm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonStartAsm.Location = new System.Drawing.Point(273, 347);
+            this.buttonStartAsm.Location = new System.Drawing.Point(301, 347);
             this.buttonStartAsm.Name = "buttonStartAsm";
             this.buttonStartAsm.Size = new System.Drawing.Size(94, 50);
             this.buttonStartAsm.TabIndex = 54;
