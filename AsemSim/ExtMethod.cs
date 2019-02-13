@@ -35,6 +35,11 @@ namespace AsemSim
                 return self + 'A' - 10;
             return -1;
         }
+
+		public static bool isHEX(this char self)
+		{
+			return -1 != self.ToString().ToUpper()[0].ToInt();
+		}
     }
 }
 
