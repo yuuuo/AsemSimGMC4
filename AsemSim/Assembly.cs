@@ -55,20 +55,19 @@ namespace AsemSim
 			{
 				//1ワードごとにキューに入れる
 				Queue<string> term = new Queue<string>(line[i].ToUpper().Split(del, StringSplitOptions.RemoveEmptyEntries));
-				string label = "";
 				//Check Label
 				if (line[i].IndexOf(opc = term.Dequeue()) == 0)
 				{
 					try
 					{
 						asmLabelDic.Add(opc, adr.ToString("X2"));
+						Console.WriteLine(opc);
+						Console.WriteLine(adr);
 					}
 					catch (Exception ex)
 					{
 						Error.LabelMany(i + 1);
 					}
-					
-					label = opc + " ";
 					opc = term.Dequeue();
 				}
 
@@ -88,7 +87,7 @@ namespace AsemSim
 				{
 					try
 					{
-						mem[++adr] = OperationArray.op[opc].code;
+						adr += OperationArray.op[opc].length;
 					}
 					catch (Exception ex)
 					{
