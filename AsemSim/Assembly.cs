@@ -26,26 +26,32 @@ namespace AsemSim
             char[] del = { ' ', '\t' };
 
             //スタート行探索
-            int startLine = 0;
+            int startLine = -1;
+            int endLine = -1;
             for (int i = 0; i < line.Length; i++)
             {
                 string[] term = line[i].Split(del, StringSplitOptions.RemoveEmptyEntries);
                 if (term[0] == "START")
                 {
                     startLine = i;
-                    break;
+                }
+                if(term[0] == "END")
+                {
+                    endLine = i;
                 }
             }
 
+            if (startLine == -1) Error.Start();
+            if (endLine == -1) Error.End();
+
             int adr = 0;
-            int endLine = 0;
             string opc = "";
             string opr = "";
             //ラベル保存用辞書
             Dictionary<string, string> asmLabelDic = new Dictionary<string, string>();
 
             //Pass 1
-            for (int i = startLine + 1; i < line.Length; i++)
+            for (int i = startLine + 1; i < endLine; i++)
             {
                 //1ワードごとにキューに入れる
                 Queue<string> term = new Queue<string>(line[i].ToUpper().Split(del, StringSplitOptions.RemoveEmptyEntries));
@@ -58,12 +64,7 @@ namespace AsemSim
                     opc = term.Dequeue();
                 }
 
-                if (opc == "END")
-                {
-                    endLine = i;
-                    break;
-                }
-                else if (opc == "RET")
+                if (opc == "RET")
                 {
 
                 }
@@ -87,7 +88,7 @@ namespace AsemSim
             // DC用カウンタ
             int DCCounter = 0;
             //Pass 2
-            for (int i = startLine + 1; i < line.Length; i++)
+            for (int i = startLine + 1; i < endLine; i++)
             {
                 Queue<string> term = new Queue<string>(line[i].Split(del, StringSplitOptions.RemoveEmptyEntries));
                 //Check Label
@@ -96,11 +97,7 @@ namespace AsemSim
                     opc = term.Dequeue();
                 }
 
-                if (opc == "END")
-                {
-                    break;
-                }
-                else if (opc == "DC")
+                if (opc == "DC")
                 {
                     opr = term.Dequeue();
                     mem[80 + DCCounter++] = opr[0];

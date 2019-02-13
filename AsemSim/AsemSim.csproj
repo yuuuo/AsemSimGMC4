@@ -49,6 +49,7 @@
     <Compile Include="Assembly.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Error.cs" />
     <Compile Include="Execution.cs">
       <SubType>Form</SubType>
     </Compile>
