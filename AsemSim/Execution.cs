@@ -26,6 +26,7 @@ namespace AsemSim
 		/// </summary>
 		private void buttonReset_Click(object sender, EventArgs e)
 		{
+			setStatus();
 			timer1.Stop();
 		}
 
@@ -97,6 +98,8 @@ namespace AsemSim
 					break;
 				case '5':
 					ar = dm[yr];
+					Console.WriteLine(yr);
+					Console.WriteLine(dm[yr]);
 					address++;
 					exFlag = true;
 					break;
@@ -126,8 +129,8 @@ namespace AsemSim
 					exFlag = true;
 					break;
 				case 'B':
-					yr = (ar + mem[address + 1].ToInt()) % 16;
-					exFlag = (ar + mem[address + 1].ToInt()) / 16 > 0;
+					yr = (yr + mem[address + 1].ToInt()) % 16;
+					exFlag = (yr + mem[address + 1].ToInt()) / 16 > 0;
 					address += 2;
 					break;
 				case 'C':
@@ -272,7 +275,6 @@ namespace AsemSim
 					if (waitTimer == -1)
 					{
 						waitTimer = ar + 1;
-						Console.WriteLine(waitTimer);
 					}
 					else
 					{
@@ -282,8 +284,6 @@ namespace AsemSim
 							waitTimer = -1;
 							address += 2;
 						}
-						Console.WriteLine(waitTimer);
-						Console.WriteLine(address);
 					}
 					exFlag = true;
 					break;
