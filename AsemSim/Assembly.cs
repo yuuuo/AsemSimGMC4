@@ -61,8 +61,6 @@ namespace AsemSim
 					try
 					{
 						asmLabelDic.Add(opc, adr.ToString("X2"));
-						Console.WriteLine(opc);
-						Console.WriteLine(adr);
 					}
 					catch (Exception ex)
 					{
@@ -111,11 +109,10 @@ namespace AsemSim
 				{
 					opc = term.Dequeue();
 				}
-
 				if (opc == "DC")
 				{
 					opr = term.Dequeue();
-					mem[80 + DCCounter++] = opr[0];
+					dm[DCCounter++] = opr[0].ToInt();
 					continue;
 				}
 				else if (opc[0] == ';')
@@ -197,6 +194,7 @@ namespace AsemSim
 
 			//結果を出力
 			setMemText();
+			setStatus();
 		}
 	}
 }

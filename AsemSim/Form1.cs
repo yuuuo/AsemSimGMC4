@@ -18,7 +18,7 @@ namespace AsemSim
         /// プログラムメモリ宣言
         /// </summary>
         int address = 0;
-        char[] mem = new char[97];
+        char[] mem = new char[79];
 
         /// <summary>
         /// メモリ初期化処理
@@ -89,7 +89,11 @@ namespace AsemSim
         {
             statusLabel.Text = "A : " + ar.ToString("X") + " , B : " + br.ToString("X") + " , Y : " + yr.ToString("X") + " , Z : " + zr.ToString("X") +
                               " A' : " + ar_.ToString("X") + " , B' : " + br_.ToString("X") + " , Y' : " + yr_.ToString("X") + " , Z' : " + zr_.ToString("X") +
-                              "  実行フラグ : " + exFlag.ToString();
+                              "  実行フラグ : " + exFlag.ToString() + " dm : ";
+			foreach (var item in dm)
+			{
+				statusLabel.Text += item.ToChar().ToString() + ", ";
+			}
         }
     }
 }

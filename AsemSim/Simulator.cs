@@ -32,6 +32,22 @@ namespace AsemSim
         // TIMRで待つ回数 -1 : 未使用
         int waitTimer = -1;
 
+		private void resetRegister()
+		{
+			ar = 0xF;
+			br = 0xF;
+			yr = 0xF;
+			zr = 0xF;
+			ar_ = 0xF;
+			br_ = 0xF;
+			yr_ = 0xF;
+			zr_ = 0xF;
+			for(int i = 0; i < dm.Length; i++)
+			{
+				dm[i] = 0xf;
+			}
+		}
+
 
         /// <summary>
         /// ボタンが押されたときのイベント
