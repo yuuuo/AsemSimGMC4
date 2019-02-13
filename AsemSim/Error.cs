@@ -44,6 +44,11 @@ namespace AsemSim
 			ShowMessage("L:" + l.ToString() + "  Label is not Found");
 		}
 
+		public static void SoundNotFound()
+		{
+			ShowMessage("Sound File is not Found");
+		}
+
 		private static void ShowMessage(string str)
         {
             MessageBox.Show(str, "Assemble Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
