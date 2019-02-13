@@ -26,14 +26,14 @@ namespace AsemSim
         /// 拡張メソッド
         /// int型を16進charにキャスト
         /// </summary>
-        /// <returns>-1でエラー</returns>
-        public static int ToChar(this int self)
+        /// <returns>255でエラー</returns>
+        public static char ToChar(this int self)
         {
             if (0 <= self && self <= 9)
-                return self + '0';
+                return (char)(self + '0');
             else if (10 <= self && self <= 15)
-                return self + 'A' - 10;
-            return -1;
+                return (char)(self + 'A' - 10);
+            return (char)255;
         }
 
 		public static bool isHEX(this char self)
