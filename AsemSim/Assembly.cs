@@ -31,6 +31,7 @@ namespace AsemSim
 			for (int i = 0; i < line.Length; i++)
 			{
 				string[] term = line[i].Split(del, StringSplitOptions.RemoveEmptyEntries);
+                if (term.Count() == 0) continue;
 				if (term[0] == "START")
 				{
 					startLine = i;
@@ -55,6 +56,8 @@ namespace AsemSim
 			{
 				//1ワードごとにキューに入れる
 				Queue<string> term = new Queue<string>(line[i].ToUpper().Split(del, StringSplitOptions.RemoveEmptyEntries));
+
+                if (term.Count() == 0) continue;
 				//Check Label
 				if (line[i].IndexOf(opc = term.Dequeue()) == 0)
 				{
