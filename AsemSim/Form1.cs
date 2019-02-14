@@ -84,7 +84,9 @@ namespace AsemSim
             sw.Write(sourceTextBox.Text);
             sw.Close();
         }
-
+        /// <summary>
+        /// フォーム下のレジスタ等のステータスを表示する
+        /// </summary>
         private void setStatus()
         {
             statusLabel.Text = "A : " + ar.ToString("X") + " , B : " + br.ToString("X") + " , Y : " + yr.ToString("X") + " , Z : " + zr.ToString("X") +

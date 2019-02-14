@@ -32,6 +32,9 @@ namespace AsemSim
         // TIMRで待つ回数 -1 : 未使用
         int waitTimer = -1;
 
+        /// <summary>
+        /// レジスタの値をクリア
+        /// </summary>
 		private void resetRegister()
 		{
 			ar = 0xF;

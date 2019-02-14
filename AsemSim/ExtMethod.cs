@@ -36,6 +36,13 @@ namespace AsemSim
             return (char)255;
         }
 
+
+        /// <summary>
+        /// 拡張メソッド
+        /// char型文字列が16進数か判定
+        /// </summary>
+        /// <param name="self">値</param>
+        /// <returns>16進数</returns>
 		public static bool isHEX(this char self)
 		{
 			return -1 != self.ToString().ToUpper()[0].ToInt();
